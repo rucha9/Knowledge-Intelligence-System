@@ -122,9 +122,6 @@ def upload_document():
         logger.error(f"Unexpected error: {str(e)}")
         return jsonify({'error': f'Unexpected error: {str(e)}'}), 500
 
-
-
-
 @app.route('/query', methods=['POST'])
 def query():
     data = request.json
