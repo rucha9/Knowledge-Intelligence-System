@@ -1,11 +1,11 @@
-from models.vector_store import VectorStore
+from models.vector_store import Vector_Store
 from services.storage_service import S3Storage
 from services.llm_service import LLMService
 from config import Config
 import os
 from langchain.document_loaders import TextLoader, PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from tempfile import NamedTemporaryFile
+import tempfile
 import logging
 from flask import Flask, request, jsonify, render_template
 
@@ -13,9 +13,9 @@ from flask import Flask, request, jsonify, render_template
 app = Flask(__name__)
 
 
-vector_store = VectorStore(Config.VECTOR_DB_PATH)
+vector_store = Vector_Store(Config.VECTOR_DB_PATH)
 storage_service = S3Storage()
-llm_service = LLMService(vector_store)
+llm_service = LLMService(vector_store.vector_store)
 
 
 @app.route('/')
@@ -139,4 +139,5 @@ def query():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080, debug= True)
+    #app.run(host='0.0.0.0', port=8080, debug= True)
+    app.run(host='127.0.0.1', port=8080, debug=True)

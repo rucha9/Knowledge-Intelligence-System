@@ -3,7 +3,7 @@ from langchain.vectorstores import Chroma
 from langchain.embeddings.openai import OpenAIEmbeddings
 
 
-class VectorStore:
+class Vector_Store:
     def __init__(self,path): 
         self.embeddings = OpenAIEmbeddings()
         self.vector_store = Chroma(
